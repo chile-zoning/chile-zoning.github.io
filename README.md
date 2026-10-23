@@ -7,7 +7,7 @@ Contacto: husilva@uc.cl.
 
 Mapa interactivo con dos medidas por comuna y año para 34 comunas del Gran Santiago:
 
-1. **Índice de restrictividad** (3 a 12, más alto es más flexible). Cada polígono recibe un
+1. **Índice de flexibilidad** (3 a 12, más alto es más flexible). Cada polígono recibe un
    puntaje de 1 a 3 en altura máxima efectiva, coeficiente de constructibilidad y densidad
    máxima según terciles comunes de 1997 a 2024, y 4 si la norma no tiene tope. El índice es
    la suma; el promedio comunal pondera por área residencial.
