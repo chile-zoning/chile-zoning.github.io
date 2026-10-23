@@ -1,6 +1,6 @@
 # Regulación de edificación en el Gran Santiago, 1997 a 2024
 
-Sitio: https://hugosilvam.github.io/regulacion-gran-santiago/
+Sitio: https://chile-zoning.github.io/
 
 Autores: Hugo E. Silva, Kenzo Asahi y Diego Gil, Pontificia Universidad Católica de Chile.
 Contacto: husilva@uc.cl.
@@ -29,7 +29,7 @@ polígono-año. Polígonos con normas caso a caso quedan fuera de ambas medidas.
 ## Cómo citar
 
 Silva, H. E., K. Asahi y D. Gil (2026). *Regulación de edificación en el Gran Santiago, 1997 a
-2024* [datos y sitio web]. https://hugosilvam.github.io/regulacion-gran-santiago/
+2024* [datos y sitio web]. https://chile-zoning.github.io/
 
 Los datos se usan en: Gil, D., H. E. Silva y K. Asahi. "Wealth, Homeownership, and Land Use
 Regulatory Changes". *Urban Studies*, en prensa.
