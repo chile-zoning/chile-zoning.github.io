@@ -74,8 +74,11 @@ details p{margin:8px 0 0}
 .foot b{font-weight:600;color:var(--ink)}
 .foot a{color:var(--accent)}
 /* Scoring grid in the index card; on wide screens both map cards share row tracks (subgrid) so legends and maps line up */
-.how{margin:0 0 10px}
 .how .note{margin:0 0 6px}
+.how-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px 28px;align-items:start}
+.how-grid .note{font-size:13px}
+.how-grid .pts+.note{margin-top:8px}
+@media (max-width:760px){.how-grid{grid-template-columns:1fr}}
 .pts{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
 .pts th,.pts td{padding:3px 6px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
 .pts td{color:var(--ink-2)}
@@ -83,6 +86,7 @@ details p{margin:8px 0 0}
 .pts th:first-child{text-align:left;padding-left:0}
 .pts tbody th{font-weight:500;color:var(--ink);white-space:normal}
 .pts tbody tr:last-child>*{border-bottom:0}
+.pts small{display:block;font-size:10.5px;color:var(--ink-3);white-space:normal;line-height:1.25}
 @media (max-width:480px){.pts{font-size:11px}.pts th,.pts td{padding:3px 2px}}
 @media (min-width:761px){
   .maps{grid-template-rows:repeat(4,auto);row-gap:0}
@@ -99,6 +103,28 @@ details p{margin:8px 0 0}
     <h1>Regulación de edificación por comuna</h1>
     <p class="sub">Dos medidas por comuna y año: el índice de flexibilidad (altura, constructibilidad y densidad) y la parte del suelo residencial donde se pueden construir edificios altos, o donde solo se permiten casas. Haga clic en una comuna para ver su trayectoria.</p>
   </header>
+
+  <section class="card how">
+    <div class="hd"><h2>Cómo leer el índice de flexibilidad</h2></div>
+    <div class="how-grid">
+      <div>
+        <p class="note">Mide cuánto deja construir la norma en el suelo residencial. Un valor alto significa edificios más altos, más metros construidos y más viviendas por terreno. Un valor bajo significa casas bajas y pocas viviendas por hectárea.</p>
+        <p class="note">Cada zona del plan regulador recibe de 1 a 4 puntos en tres dimensiones, según la tabla. El índice es la suma, de 3 (todo restringido) a 12 (sin tope en las tres). Cada comuna es el promedio de sus zonas, ponderado por área.</p>
+      </div>
+      <div>
+        <table class="pts">
+          <thead><tr><th scope="col">Puntos</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Altura máxima</th><td>≤ 10 m<small>hasta 3 pisos</small></td><td>10–14 m<small>3 a 5 pisos</small></td><td>&gt; 14 m<small>5 pisos o más</small></td><td>sin tope</td></tr>
+            <tr><th scope="row">Constructibilidad</th><td>≤ 1,0<small>m² ≤ terreno</small></td><td>1,0–1,6<small>hasta 1,6 veces</small></td><td>&gt; 1,6<small>más de 1,6 veces</small></td><td>sin tope</td></tr>
+            <tr><th scope="row">Densidad</th><td>≤ 250 hab/ha<small>≤ 62 viv/ha</small></td><td>250–450<small>62–112 viv/ha</small></td><td>&gt; 450<small>&gt; 112 viv/ha</small></td><td>sin tope</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Pisos: 2,5 m por piso más 1 m adicional (3 pisos caben en 8,5 m). Constructibilidad: metros cuadrados que se pueden construir por cada metro cuadrado de terreno. Viviendas con 4 personas por vivienda, la conversión de la OGUC.</p>
+        <p class="note"><b>Ejemplo.</b> Una zona con altura máxima de 12 m (2 puntos), constructibilidad de 0,8 (1 punto) y densidad sin tope (4 puntos) tiene un índice de 7.</p>
+      </div>
+    </div>
+  </section>
 
   <div class="bar" role="toolbar" aria-label="Controles">
     <div class="grp">
@@ -121,18 +147,7 @@ details p{margin:8px 0 0}
   <div class="maps">
     <section class="card">
       <div class="hd"><h2>Índice de flexibilidad</h2><span class="big" id="v-idx"></span></div>
-      <div class="how">
-        <p class="note">Suma de tres puntajes por polígono, de 3 a 12. Más alto, más flexible. Cada comuna es el promedio ponderado por área.</p>
-        <table class="pts">
-          <thead><tr><th scope="col">Puntaje</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Altura máxima</th><td>≤ 10 m</td><td>10–14 m</td><td>&gt; 14 m</td><td>sin tope</td></tr>
-            <tr><th scope="row">Constructibilidad</th><td>≤ 1,0</td><td>1,0–1,6</td><td>&gt; 1,6</td><td>sin tope</td></tr>
-            <tr><th scope="row">Densidad (hab/ha)</th><td>≤ 250</td><td>250–450</td><td>&gt; 450</td><td>sin tope</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="legend"><span>Restrictivo (5)</span><div class="ramp" id="ramp-idx"></div><span>Flexible (11)</span></div>
+      <div class="legend"><span>Restrictivo (5 o menos)</span><div class="ramp" id="ramp-idx"></div><span>Flexible (11 o más)</span></div>
       <div class="fig map" id="map-idx"></div>
     </section>
     <section class="card">
@@ -153,7 +168,7 @@ details p{margin:8px 0 0}
 
   <details class="card">
     <summary>Cómo se construyen las medidas</summary>
-    <p class="note">Fuente: panel de normas urbanísticas de los Planes Reguladores Comunales de 34 comunas del Gran Santiago, 1997 a 2024, a nivel de polígono-año. Universo: polígonos con uso residencial permitido. Índice de flexibilidad: para cada polígono, la altura máxima efectiva, el coeficiente de constructibilidad y la densidad máxima reciben puntaje 1 a 3 según terciles comunes de 1997 a 2024 (1 = tercil más restrictivo), y 4 si la norma no tiene tope; el índice es la suma (3 a 12). El promedio comunal pondera por área. Polígonos con normas caso a caso ("otro") quedan fuera. Altura: un polígono admite edificios de N pisos si su altura máxima efectiva (el régimen más favorable entre aislado, continuo y pareado) es al menos N × 3,5 m, o si no tiene tope. La medida es la fracción del área residencial con índice que cumple la condición. "Sin tope" es la fracción sin límite de altura en algún régimen. "Solo casas" es la fracción donde la altura máxima tiene tope de 9 m o menos en todos los regímenes; el mapa usa una escala roja porque ahí un valor alto indica más restricción.</p>
+    <p class="note">Fuente: panel de normas urbanísticas de los Planes Reguladores Comunales de 34 comunas del Gran Santiago, 1997 a 2024, a nivel de polígono-año. Universo: polígonos con uso residencial permitido. Índice de flexibilidad: para cada polígono, la altura máxima efectiva, el coeficiente de constructibilidad y la densidad máxima reciben puntaje 1 a 3 según terciles comunes de 1997 a 2024 (1 = tercil más restrictivo), y 4 si la norma no tiene tope; el índice es la suma (3 a 12). El promedio comunal pondera por área. Los promedios comunales observados van de 3,4 a 12; la escala de colores del mapa se satura en 5 y 11 para distinguir mejor las comunas del centro de la distribución. Polígonos con normas caso a caso ("otro") quedan fuera. Altura: un polígono admite edificios de N pisos si su altura máxima efectiva (el régimen más favorable entre aislado, continuo y pareado) es al menos N × 3,5 m, o si no tiene tope. La medida es la fracción del área residencial con índice que cumple la condición. "Sin tope" es la fracción sin límite de altura en algún régimen. "Solo casas" es la fracción donde la altura máxima tiene tope de 9 m o menos en todos los regímenes; el mapa usa una escala roja porque ahí un valor alto indica más restricción.</p>
   </details>
 
   <footer class="foot">
