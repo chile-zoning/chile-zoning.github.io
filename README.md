@@ -28,9 +28,13 @@ polígono-año. Polígonos con normas caso a caso quedan fuera de ambas medidas.
 - `data/simple.csv`: la serie comuna-año. Columnas: `comuna`, `comuna_label`, `year`,
   `indice` (3 a 12), y las fracciones del área residencial (0 a 1) `h4`, `h6`, `h10` (admite
   4, 6 o 10 pisos), `hlibre` (altura sin tope en algún régimen) y `hcasas` (tope de 9 m o
-  menos en todos los regímenes, es decir, sólo casas). `h_prom_m` es la altura máxima
-  efectiva promedio en metros, ponderada por área, sólo en polígonos con tope. La fila
-  `GRAN SANTIAGO` es el promedio ponderado por área.
+  menos en todos los regímenes, es decir, sólo casas). La fila `GRAN SANTIAGO` es el
+  promedio ponderado por área.
+
+## Uso de los datos
+
+Los datos por comuna y año de este sitio se pueden usar libremente citando la fuente (ver
+"Cómo citar"). Los datos a nivel de polígono no se distribuyen.
 
 ## Cómo citar
 
