@@ -17,7 +17,7 @@ suelo que admite uso residencial.
    altura máxima efectiva (régimen más favorable entre aislado, continuo y pareado) permite al
    menos 4, 6 o 10 pisos, o no tiene tope. Un edificio de N pisos requiere 2,5 m × N + 1,5 m
    (11,5 m para 4 pisos, 16,5 m para 6 y 26,5 m para 10). También se mide la fracción donde
-   sólo se permiten casas.
+   sólo se permiten edificaciones de hasta 3 pisos (tope de 10,5 m o menos).
 
 Fuente: panel de normas urbanísticas de los Planes Reguladores Comunales a nivel de
 polígono-año. Polígonos con normas caso a caso quedan fuera de ambas medidas.
@@ -27,8 +27,9 @@ polígono-año. Polígonos con normas caso a caso quedan fuera de ambas medidas.
 - `index.html`: la página (necesita conexión para d3 y tipografías).
 - `data/simple.csv`: la serie comuna-año. Columnas: `comuna`, `comuna_label`, `year`,
   `indice` (3 a 12), y las fracciones del área residencial (0 a 1) `h4`, `h6`, `h10` (admite
-  4, 6 o 10 pisos), `hlibre` (altura sin tope en algún régimen) y `hcasas` (tope de 9 m o
-  menos en todos los regímenes, es decir, sólo casas). La fila `GRAN SANTIAGO` es el
+  4, 6 o 10 pisos), `hlibre` (altura sin tope en algún régimen) y `hcasas` (tope de 10,5 m o
+  menos en todos los regímenes, es decir, hasta 3 pisos; hasta el 17-11-2026 el corte era
+  9 m, "sólo casas"). La fila `GRAN SANTIAGO` es el
   promedio ponderado por área.
 
 ## Uso de los datos
